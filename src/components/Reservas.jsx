@@ -89,7 +89,7 @@ export default function Reservas() {
                                 placeholder="Cantidad de personas"
                                 className={`${inputClass} flex-1`}
                                 required
-                                readOnly
+                                disabled
                                 value={persons ?? ""}
                                 onKeyDown={(e) => e.preventDefault()}
                             />

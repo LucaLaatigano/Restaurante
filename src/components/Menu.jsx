@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react"
 import { faker } from '@faker-js/faker'
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useMealsContext } from "../context/MealsContext"
+import { useMealsContext } from "../contexts/MealsContext"
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 export default function Menu() {
