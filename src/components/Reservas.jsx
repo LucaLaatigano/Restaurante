@@ -139,6 +139,7 @@ export default function Reservas({ id }) {
                             <input
                                 ref={dateRef}
                                 type="date"
+                                placeholder="dd/mm/aa"
                                 className={`${inputClass}`}
                                 required
                                 value={date}
