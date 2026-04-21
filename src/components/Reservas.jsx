@@ -1,11 +1,64 @@
 import { useState, useRef } from "react"
+import { gsap } from "gsap"
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/all"
 
+gsap.registerPlugin(ScrollTrigger)
 export default function Reservas() {
     const [name, setName] = useState("")
     const [date, setDate] = useState("")
     const [hour, setHour] = useState("")
     const [persons, setPersons] = useState(null)
     const dateRef = useRef(null)
+    const container = useRef(null)
+
+    useGSAP(() => {
+        const mm = gsap.matchMedia()
+
+        mm.add("(max-width: 639px)", () => {
+            const items = gsap.utils.toArray(".item", container.current)
+            if (!items.length) return
+
+            gsap.set(items, { opacity: 0, xPercent: -100 })
+
+            items.forEach((item, index) => {
+                gsap.to(item, {
+                    xPercent: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power2.inOut",
+                    delay: index * 0.15,
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top 110%",
+                        toggleActions: "play none none none"
+                    }
+                })
+            })
+        })
+
+        mm.add("(min-width: 640px)", () => {
+            const items = gsap.utils.toArray(".item", container.current)
+            if (!items.length) return
+
+            gsap.set(items, { opacity: 0, y: 100 })
+
+            gsap.to(items, {
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                ease: "power2.inOut",
+                stagger: 0.3,
+                scrollTrigger: {
+                    trigger: container.current,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                }
+            })
+        })
+
+        return () => mm.revert()
+    }, { scope: container })
 
     const handleUp = (e) => {
         e.preventDefault()
@@ -44,12 +97,12 @@ export default function Reservas() {
     const inputClass = "px-5 py-5 w-full h-15 text-claro bg-neutral-800 outline-none transition-all duration-300 ease-in-out focus:scale-[1.02] rounded-2xl cursor-pointer"
 
     return (
-        <div className="h-auto w-full bg-dorado -mt-20 pb-10">
+        <div ref={container} className="h-auto w-full bg-dorado -mt-20 pb-10">
             <div className="flex flex-col gap-5 justify-center w-full">
-                <span className="text-2xl font-light tracking-wider text-negro mt-15 text-center">RESERVA TU LUGAR</span>
-                <h3 className="text-4xl font-bold tracking-wider text-negro text-center">Tu Mesa Te Espera</h3>
+                <span className="item text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-wider text-negro mt-15 text-center">RESERVA TU LUGAR</span>
+                <h3 className="item text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold tracking-wider text-negro text-center">Tu Mesa Te Espera</h3>
                 <div className="flex justify-center">
-                    <div className="w-20 border border-neutral-900/30" />
+                    <div className="w-20 border border-neutral-900/30 item" />
                 </div>
             </div>
             <div className="flex justify-center items-center mt-10 px-4">
@@ -57,12 +110,12 @@ export default function Reservas() {
                     <input
                         type="text"
                         placeholder="Tu nombre"
-                        className={inputClass}
+                        className={`${inputClass} item`}
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4 item">
                         <div className="flex-1 cursor-pointer" onClick={handleDateClick}>
                             <input
                                 ref={dateRef}
@@ -82,7 +135,7 @@ export default function Reservas() {
                             onChange={(e) => setHour(e.target.value)}
                         />
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-4 items-center">
+                    <div className="flex flex-col sm:flex-row gap-4 items-center item">
                         <div className="flex gap-1 flex-1 w-full">
                             <input
                                 type="text"
