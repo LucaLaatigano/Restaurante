@@ -97,10 +97,24 @@ export default function Reservas({ id }) {
         window.open(`https://wa.me/${numero}?text=${mensajeEncoded}`, "_blank")
     }
 
-    const inputClass = "px-5 py-5 w-full h-15 text-claro bg-neutral-800 outline-none transition-all duration-300 ease-in-out focus:scale-[1.02] rounded-2xl cursor-pointer"
+    const inputClass = "px-5 py-0 w-full h-15 text-claro bg-neutral-800 outline-none transition-all duration-300 ease-in-out focus:scale-[1.02] rounded-2xl cursor-pointer appearance-none flex items-center"
 
     return (
         <section id={id} ref={container} className="h-auto w-full bg-dorado -mt-20 pb-10">
+            <style>
+                {`
+                    input[type="date"]::-webkit-inner-spin-button,
+                    input[type="date"]::-webkit-calendar-picker-indicator {
+                        display: none;
+                        -webkit-appearance: none;
+                    }
+                    input[type="date"] {
+                        display: flex;
+                        align-items: center;
+                        line-height: 1;
+                    }
+                `}
+            </style>
             <div className="flex flex-col gap-5 justify-center w-full">
                 <span className="item text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-wider text-negro mt-15 text-center">RESERVA TU LUGAR</span>
                 <h3 className="item text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold tracking-wider text-negro text-center">Tu Mesa Te Espera</h3>
@@ -114,7 +128,7 @@ export default function Reservas({ id }) {
                         <input
                             type="text"
                             placeholder="Tu nombre"
-                            className={`${inputClass}`}
+                            className={`${inputClass} py-5!`}
                             required
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -125,7 +139,7 @@ export default function Reservas({ id }) {
                             <input
                                 ref={dateRef}
                                 type="date"
-                                className={`${inputClass} w-full`}
+                                className={`${inputClass}`}
                                 required
                                 value={date}
                                 onChange={(e) => setDate(e.target.value)}
@@ -134,7 +148,7 @@ export default function Reservas({ id }) {
                         <input
                             type="text"
                             placeholder="Horario (ej: 20:30)"
-                            className={`${inputClass} flex-1`}
+                            className={`${inputClass} py-5! flex-1`}
                             required
                             value={hour}
                             onChange={(e) => setHour(e.target.value)}
@@ -145,7 +159,7 @@ export default function Reservas({ id }) {
                             <input
                                 type="text"
                                 placeholder="Cantidad de personas"
-                                className={`${inputClass} flex-1`}
+                                className={`${inputClass} py-5! flex-1`}
                                 required
                                 disabled
                                 value={persons ?? ""}
