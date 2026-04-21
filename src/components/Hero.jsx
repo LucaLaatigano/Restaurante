@@ -34,9 +34,7 @@ export default function Hero({ id }) {
                         <span className="hero-item text-dorado text-lg sm:text-xl md:text-2xl tracking-widest">COCINA ARTESANAL · DESDE 1985</span>
                     </div>
                     <div className="hero-item flex justify-center">
-                        <button className="w-30 h-10 md:w-40 md:h-15 border rounded-3xl border-crema text-crema hover:bg-white/10 hover:cursor-pointer">
-                            <a href="../assets/carta" download="menu-la-mesa">VER MENÚ</a>
-                        </button>
+                        <a href="/menu-la-mesa.pdf" target='_blank' download="menu-la-mesa.pdf" rel="noopener noreferrer" className="w-30 h-10 md:w-40 md:h-15 border rounded-3xl border-dorado text-crema hover:bg-white/10 hover:cursor-pointer pl-4 pt-1.5 tracking-wider">VER MENÚ</a>
                     </div>
                     <div className='flex justify-center'>
                         <div className='grid grid-cols-1 divide-y md:grid-cols-3 md:divide-y-0 md:divide-x divide-white/30 pt-2 md:mt-15 w-70 md:w-screen px-2'>
