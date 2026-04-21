@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useMealsContext } from "../contexts/MealsContext"
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
-export default function Menu() {
+export default function Menu({ id }) {
     const { meals, loading } = useMealsContext()
     const [prices] = useState(
         Array.from({ length: 6 }, () => faker.number.int({ min: 10000, max: 20000 }))
@@ -183,7 +183,7 @@ export default function Menu() {
     }
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-white border-t-4 border-dorado pb-16">
+        <section id={id} ref={containerRef} className="min-h-screen bg-white border-t-4 border-dorado pb-16">
             <div className="flex flex-col items-center pt-14 pb-10">
                 <p className="menu-title menu-first text-xs tracking-widest text-dorado uppercase font-medium mb-2">
                     Nuestra Carta
@@ -253,6 +253,6 @@ export default function Menu() {
                     </div>
                 </div>
             )}
-        </div>
+        </section>
     )
 }

@@ -2,7 +2,7 @@ import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 
 
-export default function Hero() {
+export default function Hero({ id }) {
     const stats = [
         { num: "12:00-23:00", label: "LUN-VIE" },
         { num: "11:00-00:00", label: "SAB-DOM" },
@@ -20,7 +20,7 @@ export default function Hero() {
 
 
     return (
-        <div className="relative h-screen w-full bg-neutral-900 overflow-hidden">
+        <section id={id} className="relative h-screen w-full bg-neutral-900 overflow-hidden">
             <div className="absolute inset-0 bg-line opacity-[0.08] pointer-events-none" />
             <div className="relative z-10 flex justify-center pt-15 md:19">
                 <div className="flex flex-col gap-8">
@@ -50,6 +50,6 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }

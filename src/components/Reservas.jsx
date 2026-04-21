@@ -1,10 +1,11 @@
 import { useState, useRef } from "react"
 import { gsap } from "gsap"
 import { useGSAP } from "@gsap/react"
-import { ScrollTrigger } from "gsap/all"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
-export default function Reservas() {
+
+export default function Reservas({ id }) {
     const [name, setName] = useState("")
     const [date, setDate] = useState("")
     const [hour, setHour] = useState("")
@@ -26,11 +27,11 @@ export default function Reservas() {
                     xPercent: 0,
                     opacity: 1,
                     duration: 0.5,
-                    ease: "power2.inOut",
-                    delay: index * 0.15,
+                    ease: "power2.out",
+                    delay: index * 0.1,
                     scrollTrigger: {
                         trigger: item,
-                        start: "top 110%",
+                        start: "top 95%",
                         toggleActions: "play none none none"
                     }
                 })
@@ -41,21 +42,23 @@ export default function Reservas() {
             const items = gsap.utils.toArray(".item", container.current)
             if (!items.length) return
 
-            gsap.set(items, { opacity: 0, y: 100 })
+            gsap.set(items, { opacity: 0, y: 50 })
 
             gsap.to(items, {
                 y: 0,
                 opacity: 1,
-                duration: 0.5,
-                ease: "power2.inOut",
-                stagger: 0.3,
+                duration: 0.6,
+                ease: "power2.out",
+                stagger: 0.2,
                 scrollTrigger: {
                     trigger: container.current,
-                    start: "top 90%",
+                    start: "top 85%",
                     toggleActions: "play none none none"
                 }
             })
         })
+
+        ScrollTrigger.refresh()
 
         return () => mm.revert()
     }, { scope: container })
@@ -97,7 +100,7 @@ export default function Reservas() {
     const inputClass = "px-5 py-5 w-full h-15 text-claro bg-neutral-800 outline-none transition-all duration-300 ease-in-out focus:scale-[1.02] rounded-2xl cursor-pointer"
 
     return (
-        <div ref={container} className="h-auto w-full bg-dorado -mt-20 pb-10">
+        <section id={id} ref={container} className="h-auto w-full bg-dorado -mt-20 pb-10">
             <div className="flex flex-col gap-5 justify-center w-full">
                 <span className="item text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-light tracking-wider text-negro mt-15 text-center">RESERVA TU LUGAR</span>
                 <h3 className="item text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold tracking-wider text-negro text-center">Tu Mesa Te Espera</h3>
@@ -107,14 +110,16 @@ export default function Reservas() {
             </div>
             <div className="flex justify-center items-center mt-10 px-4">
                 <form onSubmit={handleSubmit} className="w-full max-w-2xl flex flex-col gap-4">
-                    <input
-                        type="text"
-                        placeholder="Tu nombre"
-                        className={`${inputClass} item`}
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                    <div className="item">
+                        <input
+                            type="text"
+                            placeholder="Tu nombre"
+                            className={`${inputClass}`}
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </div>
                     <div className="flex flex-col sm:flex-row gap-4 item">
                         <div className="flex-1 cursor-pointer" onClick={handleDateClick}>
                             <input
@@ -144,7 +149,6 @@ export default function Reservas() {
                                 required
                                 disabled
                                 value={persons ?? ""}
-                                onKeyDown={(e) => e.preventDefault()}
                             />
                             <div className="flex flex-col gap-1">
                                 <button
@@ -166,6 +170,6 @@ export default function Reservas() {
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
     )
 }

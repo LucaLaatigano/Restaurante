@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Nosotros() {
+export default function Nosotros({ id }) {
     const { meals, loading } = useMealsContext();
     const container = useRef(null);
     const leftRef = useRef(null);
@@ -116,7 +116,7 @@ export default function Nosotros() {
     ];
 
     return (
-        <div ref={container} className="min-h-screen md:h-[80vh] mb-15 bg-neutral-900 w-full overflow-x-hidden shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.4)] relative z-10">
+        <section id={id} ref={container} className="min-h-screen md:h-[80vh] mb-15 bg-neutral-900 w-full overflow-x-hidden shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.4)] relative z-10">
             <div className="w-full h-full flex flex-col md:flex-row items-stretch">
                 <div ref={leftRef} className="w-full h-80 md:h-full md:flex-1 flex justify-center bg-neutral-800 overflow-hidden">
                     {ultimoPlato ? (
@@ -161,6 +161,6 @@ export default function Nosotros() {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     );
 } 

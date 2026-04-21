@@ -1,10 +1,10 @@
-export default function Footer() {
+export default function Footer({ id }) {
     return (
-        <footer className="w-full bg-negro flex flex-col px-5 pt-10 pb-6">
+        <footer id={id} className="w-full bg-negro flex flex-col px-5 pt-10 pb-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 pb-10">
 
                 <div className="flex flex-col gap-3">
-                    <span className="font-cormorant text-xs uppercase text-dorado tracking-widest">
+                    <span className="text-xs tracking-[0.25em] uppercase  text-dorado">
                         LA MESA
                     </span>
                     <p className="text-claro text-xs md:text-sm tracking-wider leading-relaxed">
