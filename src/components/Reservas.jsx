@@ -93,7 +93,7 @@ export default function Reservas({ id }) {
         }
         const mensaje = `Hola! Quiero hacer una reserva a nombre de ${name}, el día ${date} a las ${hour}hs para ${persons} persona/s.`
         const mensajeEncoded = encodeURIComponent(mensaje)
-        const numero = "5493875221269"
+        const numero = "5493875661422"
         window.open(`https://wa.me/${numero}?text=${mensajeEncoded}`, "_blank")
     }
 

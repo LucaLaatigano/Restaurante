@@ -176,7 +176,7 @@ export default function Menu({ id }) {
     }, { scope: containerRef, dependencies: [meals, loading] })
 
     const handleOrder = ({ plate }) => {
-        const telefono = "5493875221269";
+        const telefono = "5493875661422";
         const mensaje = `Hola! Me gustaría ordenar el plato: ${plate}`;
         const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
         window.open(url, '_blank');
